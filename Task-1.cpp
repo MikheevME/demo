@@ -21,7 +21,10 @@ double calculatea(double x, double y, double z);
 */
 
 double calculateb(double x, double y, double z);
-
+/**
+* @brief получает значение с клавиатуры.
+* @return вывод значение переменных рассчитанных по формуле.
+*/
 
 int main()
 {
