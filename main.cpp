@@ -1,20 +1,64 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <iostream>
-using namespace std;
-int main()
 
+using namespace std;
+
+ /*
+ *@brief Считывает значиния с клавиатуры с проверкой ввода
+ *@return возвращает значение, если оно правильное , иначе завершает программу
+ */
+double getValue();
+
+/*
+* @brief проверяет что введенные данные положительные
+* @param lengthCm длина в см
+*/
+void isPositive(const double lengthCm);
+
+/**
+* @brief Конвертирует длину из сантиметров в дюймы
+* @param lengthCm Длина в сантиметрах, которую необходимо конвертировать
+* @param A дюймы
+* @return Длина в дюймах после конвертации
+*/
+double convertToInches(const double lengthCm);
+
+int main() 
 {
-  cout<<"enter x"<<endl;
-  
-  int (x);
-  cin>>x;
-  cout<<"y = "<<x*x;
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите длину в сантиметрах: ";
+    double lengthCm = getValue();
+    isPositive(lengthCm);
+    double lengthInches = convertToInches(lengthCm);
+
+
+    cout << "Длина в дюймах: " << lengthInches << endl;
+
     return 0;
+}
+
+double getValue()
+{
+    double value;
+    cin >> value;
+    if (cin.fail())
+    {
+        cout << "Некорректное значение" << endl;
+        abort();
+    }
+    return value;
+}
+
+void isPositive(const double lengthCm)
+{
+    if (lengthCm<= 0)
+    {
+        cout << "Введено отрицательное число " << endl;
+        abort();
+    }
+}
+
+double convertToInches(const double lengthCm)
+{
+   double A= lengthCm / 2.5; // 1 дюйм = 2.5 см
+   return A;
 }
