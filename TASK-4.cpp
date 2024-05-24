@@ -2,16 +2,19 @@
 #include <cmath>
 #include <limits>
 using namespace std;
+
 /*
 *@brief Считывает значиния с клавиатуры с проверкой ввода
 *@return возвращает значение, если оно правильное , иначе завершает программу
 */
+
 double getValue();
 
 /*
 *@brief  Функция для вычисления значения функции y = 3ln^2x+6lnx−5 
 *@return 3ln^2x+6lnx−5 
 */
+
 double calculateFunction(double x);
 
 /*
@@ -19,13 +22,14 @@ double calculateFunction(double x);
 *@param step шаг с которым идёт постороение графика
 *@return step
 */
-double getPositiveStep();
 
+double getPositiveStep();
 
 /*
 *@brief  точка хода в программу
 *@return 0
 */
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -42,19 +46,14 @@ int main()
         return 1;
     }
 
-    cout << "Введите шаг: ";
-    double step = getValue();
-    double getPositiveStep();
-
-
+    double step = getPositiveStep(); 
 
     cout << "x | y" << endl;
     cout << "--------" << endl;
 
-
-    for (double x = startX; x < endX + step; x += step)
+    for (double x = startX; x <= endX; x += step) 
     {
-        if (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < -numeric_limits<double>::epsilon())
+        if (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < numeric_limits<double>::epsilon()) // исправление: знак epsilon
         {
             cout << "Деление на ноль! Решение невозможно для x = " << x << endl;
         }
@@ -82,8 +81,7 @@ double getValue()
 
 double calculateFunction(double x)
 {
-   double S = 3 * pow(log(x), 2) + 6 * log(x) - 5;
-   return  S;
+    return 3 * pow(log(x), 2) + 6 * log(x) - 5;
 }
 
 double getPositiveStep()
