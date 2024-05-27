@@ -1,44 +1,48 @@
+
 #include <iostream>
 #include <cmath>
 #include <limits>
 using namespace std;
 
-/*
+/**
 *@brief Считывает значиния с клавиатуры с проверкой ввода
 *@return возвращает значение, если оно правильное , иначе завершает программу
 */
-
 double getValue();
 
-/*
-*@brief  Функция для вычисления значения функции y = 3ln^2x+6lnx−5 
-*@return 3ln^2x+6lnx−5 
+/**
+*@brief  Функция для вычисления значения функции y = 3ln^2x+6lnx−5
+*@return 3ln^2x+6lnx−5
 */
+double calculateFunction(const double x);
 
-double calculateFunction(double x);
-
-/*
+/**
 *@brief  Функция для проверки, что шаг положительный
 *@param step шаг с которым идёт постороение графика
 *@return step
 */
-
 double getPositiveStep();
 
-/*
+/**
+ *@brief  запрашивает у пользователя ввод положительного значения x,
+ * и продолжает запрашивать значение до тех пор, пока не будет введено положительное число.
+ * @return Возвращает введенное положительное значение x.
+ */
+double getPositiveX();
+
+/**
 *@brief  точка хода в программу
 *@return 0
 */
-
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
     cout << "Введите начальное значение x: ";
-    double startX = getValue();
+    double startX = getPositiveX();
 
     cout << "Введите конечное значение x: ";
-    double endX = getValue();
+    double endX = getPositiveX();
 
     if (startX > endX)
     {
@@ -46,16 +50,17 @@ int main()
         return 1;
     }
 
-    double step = getPositiveStep(); 
+    cout << "Введите шаг: ";
+    double step = getPositiveStep();
 
     cout << "x | y" << endl;
     cout << "--------" << endl;
 
-    for (double x = startX; x <= endX; x += step) 
+    for (double x = startX; x < endX + step; x += step)
     {
-        if (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < numeric_limits<double>::epsilon()) // исправление: знак epsilon
+        if (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < -numeric_limits<double>::epsilon())
         {
-            cout << "Деление на ноль! Решение невозможно для x = " << x << endl;
+            cout << "Решение невозможно для x = " << x << endl;
         }
         else
         {
@@ -79,9 +84,11 @@ double getValue()
     return value;
 }
 
-double calculateFunction(double x)
+
+double calculateFunction(const double x)
 {
-    return 3 * pow(log(x), 2) + 6 * log(x) - 5;
+    double a = 3 * pow(log(x), 2) + 6 * log(x) - 5;
+    return a;
 }
 
 double getPositiveStep()
@@ -96,4 +103,18 @@ double getPositiveStep()
         }
     } while (step <= 0);
     return step;
+}
+
+double getPositiveX()
+{
+    double x;
+    do {
+        cout << "Введите положительное значение x: ";
+        x = getValue();
+        if (x <= 0)
+        {
+            cout << "Ошибка. X должно быть положительным. Повторите ввод." << endl;
+        }
+    } while (x <= 0);
+    return x;
 }
