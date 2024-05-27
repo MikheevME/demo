@@ -2,13 +2,13 @@
 
 using namespace std;
 
- /*
- *@brief Считывает значиния с клавиатуры с проверкой ввода
- *@return возвращает значение, если оно правильное , иначе завершает программу
- */
+/**
+*@brief Считывает значиния с клавиатуры с проверкой ввода
+*@return возвращает значение, если оно правильное , иначе завершает программу
+*/
 double getValue();
 
-/*
+/**
 * @brief проверяет что введенные данные положительные
 * @param lengthCm длина в см
 */
@@ -17,11 +17,14 @@ void isPositive(const double lengthCm);
 /**
 * @brief Конвертирует длину из сантиметров в дюймы
 * @param lengthCm Длина в сантиметрах, которую необходимо конвертировать
-* @param A дюймы
 * @return Длина в дюймах после конвертации
 */
 double convertToInches(const double lengthCm);
 
+/**
+* @brief точка входа в программу
+* return 0
+*/
 int main() 
 {
     setlocale(LC_ALL, "Russian");
@@ -30,6 +33,7 @@ int main()
     isPositive(lengthCm);
     double lengthInches = convertToInches(lengthCm);
 
+  
 
     cout << "Длина в дюймах: " << lengthInches << endl;
 
@@ -59,6 +63,5 @@ void isPositive(const double lengthCm)
 
 double convertToInches(const double lengthCm)
 {
-   double A= lengthCm / 2.5; // 1 дюйм = 2.5 см
-   return A;
+    return lengthCm / 2.54; // 1 дюйм = 2.54 см
 }
