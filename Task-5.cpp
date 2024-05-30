@@ -98,7 +98,7 @@ double sumFirstN(const int n)
     double current = a0;
     double sum = current;
 
-    for (int k = 0; k <= n - 2; ++k)
+    for (int k = 0; k <= n - 1; ++k)
     {
         current *= recur(k);
         sum += current;
