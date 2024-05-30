@@ -58,7 +58,8 @@ int main()
 
     for (double x = startX; x < endX + step; x += step)
     {
-        if (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < -numeric_limits<double>::epsilon())
+        if  (fabs(3 * pow(log(x), 2) + 6 * log(x) - 5) < -numeric_limits<double>::epsilon() and (x > 0));
+        
         {
             cout << "Решение невозможно для x = " << x << endl;
         }
