@@ -135,9 +135,8 @@ int main()
     // Вызов функций
     cout << "значения элементов  по модулю меньше 5:  " << productOfEvenElementsBelow5(arr,n) << endl;
 
-    int a;
-    cout << "Введите значение  a: ";
     int a = getNumber();
+    cout << "Введите значение  a: ";
     cout << "Количество нечётных элементов до  " << a << ": " << countOddElementsAboveA(arr,n,a) << endl;
 
     multiplyOddMultiplesOf3ByIndex(arr, n);
