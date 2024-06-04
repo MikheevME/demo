@@ -137,20 +137,15 @@ int main()
 
     int a;
     cout << "Введите значение  a: ";
-    a = getNumber();
+    int a = getNumber();
     cout << "Количество нечётных элементов до  " << a << ": " << countOddElementsAboveA(arr,n,a) << endl;
 
     multiplyOddMultiplesOf3ByIndex(arr, n);
 
     cout << "Измененный массив: ";
-    for (size_t i = 0; i < n; ++i)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << std::endl;
-    
-
- 
+      
+    printArray(arr, n);
+   
     delete[] arr;
 
     return 0;
