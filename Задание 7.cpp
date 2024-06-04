@@ -24,7 +24,7 @@ void fillArrayRandomly(int** array, const int rows, const int cols);
  * @param rows Количество строк в массиве.
  * @param cols Количество столбцов в массиве.
  */
-void replaceMultipleOfThreeWithZero(int** array, int rows, int cols);
+void replaceMultipleOfThreeWithZero(int** array, const int rows, const int cols);
 
 
 /**
@@ -81,7 +81,10 @@ int main()
     int max_rows = getValue();
     cout << "Введите количество столбцов: ";
     int max_cols = getValue();
-
+        if(max_rows <= 0)
+            cout << "Введите положительное количество строк << endl;         
+        if(max_cols <= 0)
+            cout << "Введите положительное количество столбцов << endl;
     int** array = getNewArray(max_rows, max_cols);
     fillArrayRandomly(array, max_rows, max_cols);
 
