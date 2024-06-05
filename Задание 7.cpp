@@ -1,4 +1,5 @@
-﻿#include <cstdlib>
+﻿
+#include <cstdlib>
 #include <iostream>
 #include <cmath>
 #include <ctime>
@@ -34,7 +35,7 @@ void replaceMultipleOfThreeWithZero(int** array, const int rows, const int cols)
  * @param rows Количество строк в массиве. Послле выполнения функции это значение будет изменено на новое количество строк.
  * @param cols Количество столбцов в массиве.
  */
-void deleteRowsWhereSecondIsGreaterThanPenultimate(int** array,const int& rows,const int cols);
+void deleteRowsWhereSecondIsGreaterThanPenultimate(int** array, const int& rows, const int cols);
 
 /**
 *brief Выводит двумерный массив на экран.
@@ -69,6 +70,13 @@ int** copyArray(int** arr, const int rows, const int columns);
 void deleteArray(int** arr, const int rows);
 
 /**
+ * @brief проверяет, является ли переданное значение положительным.
+ * @param value значение, которое требуется проверить на положительность
+ * @paramdimension: const string& - строковое представление измерения, связанного с проверяемым значением
+ */
+void checkPositive(int value, const string& dimension);
+
+/**
 *brief Точка входа в программу
 *return 0
 */
@@ -81,11 +89,10 @@ int main()
     int max_rows = getValue();
     cout << "Введите количество столбцов: ";
     int max_cols = getValue();
-        if(max_rows <= 0)
-            cout << "Введите положительное количество строк << endl;         
-        if(max_cols <= 0)
-            cout << "Введите положительное количество столбцов << endl;
-    int** array = getNewArray(max_rows, max_cols);
+    checkPositive(max_rows, "строк");
+    checkPositive(max_cols, "столбцов");
+
+            int** array = getNewArray(max_rows, max_cols);
     fillArrayRandomly(array, max_rows, max_cols);
 
     cout << "Случайно заполненный массив:" << endl;
@@ -112,9 +119,9 @@ int main()
     return 0;
 }
 void fillArrayRandomly(int** array, int rows, int cols) {
-    for (size_t i = 0; i < rows; ++i) 
+    for (size_t i = 0; i < rows; ++i)
     {
-        for (size_t j = 0; j < cols; ++j) 
+        for (size_t j = 0; j < cols; ++j)
         {
             array[i][j] = rand() - RAND_MAX / 2;
         }
@@ -141,9 +148,9 @@ void deleteRowsWhereSecondIsGreaterThanPenultimate(int** array, int& rows, int c
 
     for (size_t i = 0; i < rows; ++i)
     {
-        if (array[i][1] <= array[i][cols - 2]) 
+        if (array[i][1] <= array[i][cols - 2])
         {
-            if (i != writeIndex) 
+            if (i != writeIndex)
             {
                 for (size_t j = 0; j < cols; ++j)
                 {
@@ -157,11 +164,11 @@ void deleteRowsWhereSecondIsGreaterThanPenultimate(int** array, int& rows, int c
     rows = writeIndex;
 }
 
-void printArray(int** array, int rows, int cols) 
+void printArray(int** array, int rows, int cols)
 {
-    for (size_t i = 0; i < rows; ++i) 
+    for (size_t i = 0; i < rows; ++i)
     {
-        for (size_t j = 0; j < cols; ++j) 
+        for (size_t j = 0; j < cols; ++j)
         {
             cout << array[i][j] << " ";
         }
@@ -169,11 +176,11 @@ void printArray(int** array, int rows, int cols)
     }
 }
 
-double getValue() 
+double getValue()
 {
     double value;
     cin >> value;
-    if (cin.fail()) 
+    if (cin.fail())
     {
         cout << "Некорректное значение" << endl;
         abort();
@@ -181,22 +188,22 @@ double getValue()
     return value;
 }
 
-int** getNewArray(const int max_rows, const int max_cols) 
+int** getNewArray(const int max_rows, const int max_cols)
 {
     int** array = new int* [max_rows];
-    for (size_t i = 0; i < max_rows; ++i) 
+    for (size_t i = 0; i < max_rows; ++i)
     {
         array[i] = new int[max_cols];
     }
     return array;
 }
 
-int** copyArray(int** arr, const int rows, const int columns) 
+int** copyArray(int** arr, const int rows, const int columns)
 {
     int** resultArray = getNewArray(rows, columns);
-    for (size_t i = 0; i < rows; i++) 
+    for (size_t i = 0; i < rows; i++)
     {
-        for (size_t j = 0; j < columns; j++) 
+        for (size_t j = 0; j < columns; j++)
         {
             resultArray[i][j] = arr[i][j];
         }
@@ -204,11 +211,19 @@ int** copyArray(int** arr, const int rows, const int columns)
     return resultArray;
 }
 
-void deleteArray(int** arr, const int rows) 
+void deleteArray(int** arr, const int rows)
 {
-    for (size_t i = 0; i < rows; ++i) 
+    for (size_t i = 0; i < rows; ++i)
     {
         delete[] arr[i];
     }
     delete[] arr;
+}
+
+void checkPositive(int value, const string& dimension) 
+{
+    if (value <= 0) 
+    {
+        cout << "Введите положительное количество " << dimension << endl;
+    }
 }
