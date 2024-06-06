@@ -102,7 +102,7 @@ int main()
 
     setlocale(LC_ALL, "Russian");
     int n = getSize();
-    checkN(n)
+    checkN(n);
     int* arr = new int[n];
 
     cout << "Введите минимальное и максимальное значение диапазона: ";
